@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package blaedj.waiter;
+option go_package = "waiter";
+
+
+// waiter is a server for diner
+service Waiter {
+
+  // a diner can 'check in' with the waiter.
+  rpc CheckIn(CheckInLog) returns (CheckInAck);
+}
+
+message CheckInAck {
+
+}
+
+// a checking log contains basic information for a checkin.
+message CheckInLog {
+  string ulid = 1; // a ULID for the particular diner to be identified by.
+  DinerStatus status = 2;
+  string message  = 3; // may contain arbitrary info the diner wishes to communicate with waiter.
+}
+
+// a simple OK or ERROR status
+enum DinerStatus {
+  OK = 0;
+  ERROR = 1;
+}

@@ -1,11 +1,11 @@
 package waiter
 
 // to re-gen the proto gen'd files:
-// protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/service.proto
+// protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./proto/service.proto
 
 import (
 	"flag"
-	pb "github.com/blaedj/waiter/rpc"
+	pb "github.com/blaedj/waiter/proto"
 	"net/http"
 )
 

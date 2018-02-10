@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"github.com/blaedj/waiter/rpc"
+	"github.com/blaedj/waiter/waiterservice"
 	"log"
 	"net/http"
 )
@@ -14,12 +16,16 @@ var flURI = flag.String("uri", "localhost:8765",
 `)
 
 func main() {
-	flag.Parse()
-	log.Printf("using uri: %v", *flURI)
-	http.HandleFunc("/checkin", checkinHandler)
+	//flag.Parse()
+	//log.Printf("using uri: %v", *flURI)
+	//http.HandleFunc("/checkin", checkinHandler)
 
 	//	http.HandleFunc(pattern string, handler func(http.ResponseWriter, *http.Request))
-	log.Fatal(http.ListenAndServe(*flURI, nil))
+	//log.Fatal(http.ListenAndServe(*flURI, nil))
+	sever := &waiter.Server{} // implements waiter interface
+	twirpHandler := waiter.NewWaiterServer(server, nil)
+	http.ListenAndServe(":8082", twirpHandler)
+
 }
 
 func checkinHandler(w http.ResponseWriter, r *http.Request) {

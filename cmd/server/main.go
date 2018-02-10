@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/blaedj/waiter"
-	pb "github.com/blaedj/waiter/proto"
+	waiter "github.com/blaedj/waiter/internal"
+	pb "github.com/blaedj/waiter/rpc/checkin"
 	"net/http"
 )
 

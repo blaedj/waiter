@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package blaedj.waiter;
+package blaedj.waiter.checkin;
 option go_package = "waiter";
 
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	pb "github.com/blaedj/waiter/proto"
+	pb "github.com/blaedj/waiter/rpc/checkin"
 	"net/http"
 	"os"
 )
@@ -29,5 +29,4 @@ func main() {
 	}
 
 	fmt.Printf("Waiter acked %v\n", ack)
-	//client := pb.NewWaiterProtobufClient("http://localhost:8990", &http.Client{})
 }

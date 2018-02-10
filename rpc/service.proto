@@ -12,7 +12,7 @@ service Waiter {
 }
 
 message CheckInAck {
-
+  int status = 1;
 }
 
 // a checking log contains basic information for a checkin.

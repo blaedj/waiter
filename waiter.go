@@ -1,14 +1,14 @@
-package main
+package waiter
+
+// to re-gen the proto gen'd files:
+// protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/service.proto
 
 import (
 	"flag"
-	"github.com/blaedj/waiter/rpc"
-	"github.com/blaedj/waiter/waiterservice"
-	"log"
+	pb "github.com/blaedj/waiter/rpc"
 	"net/http"
 )
 
-// var uri = flag.String(name string, value string, usage string)
 var flURI = flag.String("uri", "localhost:8765",
 	`Supply a string to use as the server uri.
     Example:
@@ -19,15 +19,10 @@ func main() {
 	//flag.Parse()
 	//log.Printf("using uri: %v", *flURI)
 	//http.HandleFunc("/checkin", checkinHandler)
-
 	//	http.HandleFunc(pattern string, handler func(http.ResponseWriter, *http.Request))
 	//log.Fatal(http.ListenAndServe(*flURI, nil))
-	sever := &waiter.Server{} // implements waiter interface
-	twirpHandler := waiter.NewWaiterServer(server, nil)
+
+	server := WaiterServer{} // implements waiter interface
+	twirpHandler := pb.NewWaiterServer(server, nil)
 	http.ListenAndServe(":8082", twirpHandler)
-
-}
-
-func checkinHandler(w http.ResponseWriter, r *http.Request) {
-
 }
